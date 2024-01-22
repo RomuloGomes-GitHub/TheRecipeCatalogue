@@ -12,6 +12,8 @@ import ClassClick from './components/ClassClick'
 import EventBind from './components/EventBind'
 import Form from './components/Form'
 import PostForm from './components/PostForm'
+import Recipes from './components/Recipes'
+import AddRecipeForm from './components/AddRecipeForm'
 
 const TopRecipes = () => {
 
@@ -21,7 +23,7 @@ const TopRecipes = () => {
       </div>
     )
 };
-
+/*
 const Recipes = () => {
 
     const [recipes, setRecipes] = useState([]);
@@ -48,12 +50,20 @@ const Recipes = () => {
         )
     })
 };
-
+*/
 //<Greet /> Is a function component - It's the prefered way when you want to create simple components
 //<Welcome />  Is a class component - Can have maintain its own data and have more complicated logic and provide hooks - PS. There was an update and the hooks approach is the most recommended
 function App() {
     return (
         <div className="App">
+            <TopRecipes />
+
+            <AddRecipeForm />
+
+
+            <Recipes />
+
+
             <PostForm />
 
             <Form />
