@@ -18,4 +18,9 @@ public class RecipeService {
     public List<Recipe> getRecipes(){
         return recipeRepository.findAll();
     }
+
+    public void addNewRecipe(Recipe recipe) {
+
+        recipeRepository.save(recipe);
+    }
 }
