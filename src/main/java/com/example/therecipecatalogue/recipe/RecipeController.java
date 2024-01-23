@@ -28,8 +28,23 @@ public class RecipeController {
         recipeService.addNewRecipe(recipe);
     }
 
-    @DeleteMapping (path = "{id}")
+    @DeleteMapping(path = "{id}")
     public void deleteRecipe(@PathVariable("id") Long id){
         recipeService.deleteRecipe(id);
+    }
+
+    @PutMapping(path = "{id}")
+    public void updateRecipe(@PathVariable("id") Long id,
+                             @RequestParam(required = false) String heading,
+                             @RequestParam(required = false, defaultValue="0") int rating,
+                             @RequestParam(required = false) String description,
+                             @RequestParam(required = false, defaultValue="0") Integer preparationTimeMinutes,
+                             @RequestParam(required = false, defaultValue="0") Integer cookingTimeMinutes,
+                             @RequestParam(required = false, defaultValue="0") Integer serves,
+                             @RequestParam(required = false, defaultValue="0") Integer difficulty,
+                             @RequestParam(required = false) String ingredients,
+                             @RequestParam(required = false) String method){
+
+        recipeService.updateRecipe(id, heading, rating, description, preparationTimeMinutes, cookingTimeMinutes, serves, difficulty, ingredients, method);
     }
 }

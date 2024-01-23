@@ -3,6 +3,7 @@ package com.example.therecipecatalogue.recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -25,5 +26,46 @@ public class RecipeService {
 
     public void deleteRecipe(Long id){
         recipeRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateRecipe(Long id, String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method) {
+        Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new IllegalStateException("Recipe with Id " + id + " does not exist"));
+
+        if(heading != null && heading.length() > 0){
+            recipe.setHeading(heading);
+        }
+
+        if(rating > 0){
+            recipe.setRating(rating);
+        }
+
+        if(description != null && description.length() > 0){
+            recipe.setDescription(description);
+        }
+
+        if(preparationTimeMinutes > 0){
+            recipe.setPreparationTimeMinutes(preparationTimeMinutes);
+        }
+
+        if(cookingTimeMinutes > 0){
+            recipe.setCookingTimeMinutes(cookingTimeMinutes);
+        }
+
+        if(serves > 0){
+            recipe.setServes(serves);
+        }
+
+        if(difficulty > 0){
+            recipe.setDifficulty(difficulty);
+        }
+
+        if(ingredients != null && ingredients.length() > 0){
+            recipe.setIngredients(ingredients);
+        }
+
+        if(method != null && method.length() > 0){
+            recipe.setMethod(method);
+        }
     }
 }

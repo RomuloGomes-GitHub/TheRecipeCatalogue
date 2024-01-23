@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import DeleteRecipeButton from './DeleteRecipeButton'
+import UpdateRecipeForm from './UpdateRecipeForm'
 
 const Recipes = () => {
 
@@ -27,6 +28,7 @@ const Recipes = () => {
                 <h2>Recipe: {recipe.heading}</h2>
                 <p>Rating: {recipe.rating}</p>
                 <DeleteRecipeButton id={recipe.id} />
+                <UpdateRecipeForm id={recipe.id} />
                 <hr />
             </div>
         )
