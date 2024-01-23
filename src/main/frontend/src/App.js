@@ -16,7 +16,6 @@ import Recipes from './components/Recipes'
 import AddRecipeForm from './components/AddRecipeForm'
 
 const TopRecipes = () => {
-
     return (
       <div>
           <h1>THE RECIPE CATALOGUE</h1>
@@ -60,10 +59,14 @@ function App() {
 
             <AddRecipeForm />
 
+            <br />
+            <br />
+            <br />
+            <br />
 
             <Recipes />
 
-
+            {/*
             <PostForm />
 
             <Form />
@@ -94,7 +97,7 @@ function App() {
 
             <TopRecipes />
 
-            <Recipes />
+            <Recipes />*/}
         </div>
     );
 }

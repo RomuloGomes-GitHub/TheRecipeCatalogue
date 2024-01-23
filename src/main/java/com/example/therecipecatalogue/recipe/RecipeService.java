@@ -20,7 +20,10 @@ public class RecipeService {
     }
 
     public void addNewRecipe(Recipe recipe) {
-
         recipeRepository.save(recipe);
+    }
+
+    public void deleteRecipe(Long id){
+        recipeRepository.deleteById(id);
     }
 }
