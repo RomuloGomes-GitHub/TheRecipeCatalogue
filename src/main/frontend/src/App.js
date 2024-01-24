@@ -2,7 +2,11 @@ import React, {useState, useEffect} from "react";
 import logo from './logo.svg';
 import './App.css';
 import axios from "axios";
-import {Greet} from './components/Greet'
+import Header from './components/Header'
+import Body from './components/Body'
+import Footer from './components/Footer'
+
+/*import {Greet} from './components/Greet'
 import Welcome from './components/Welcome'
 import Hello from './components/Hello'
 import Message from './components/Message'
@@ -13,7 +17,7 @@ import EventBind from './components/EventBind'
 import Form from './components/Form'
 import PostForm from './components/PostForm'
 import Recipes from './components/Recipes'
-import AddRecipeForm from './components/AddRecipeForm'
+import AddRecipeForm from './components/AddRecipeForm'*/
 
 const TopRecipes = () => {
     return (
@@ -55,6 +59,13 @@ const Recipes = () => {
 function App() {
     return (
         <div className="App">
+
+            <Header />
+            <Body />
+            <Footer />
+
+
+            {/* don't delete
             <TopRecipes />
 
             <AddRecipeForm />
@@ -65,8 +76,12 @@ function App() {
             <br />
 
             <Recipes />
+            */}
 
-            {/*
+
+
+
+            {/* can delete
             <PostForm />
 
             <Form />
