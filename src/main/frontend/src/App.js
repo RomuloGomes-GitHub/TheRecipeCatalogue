@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from "react";
-import logo from './logo.svg';
-import './App.css';
 import axios from "axios";
-import Header from './components/Header'
-import Body from './components/Body'
-import Footer from './components/Footer'
+import './App.css';
+
+import { Routes, Route } from 'react-router-dom'
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+import Home from './pages/Home';
+import Recipes from './pages/Recipes';
+import Recipe from './pages/Recipe';
 
 /*import {Greet} from './components/Greet'
 import Welcome from './components/Welcome'
@@ -58,12 +63,25 @@ const Recipes = () => {
 //<Welcome />  Is a class component - Can have maintain its own data and have more complicated logic and provide hooks - PS. There was an update and the hooks approach is the most recommended
 function App() {
     return (
-        <div className="App">
+        <div data-bs-theme="dark" className="App">
 
+            <Header />
+
+            <Routes>
+                <Route path="/" element={ <Home /> } />
+                <Route path="/recipes" element={ <Recipes /> } />
+                <Route path="/recipes/recipe/*" element={ <Recipe /> } />
+            </Routes>
+
+            <Footer />
+
+
+
+            {/*
             <Header />
             <Body />
             <Footer />
-
+            */}
 
             {/* don't delete
             <TopRecipes />

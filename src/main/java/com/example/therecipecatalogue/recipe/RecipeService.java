@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeService {
@@ -18,6 +19,10 @@ public class RecipeService {
 
     public List<Recipe> getRecipes(){
         return recipeRepository.findAll();
+    }
+
+    public Optional<Recipe> findRecipeById(Long id){
+        return recipeRepository.findById(id);
     }
 
     public void addNewRecipe(Recipe recipe) {

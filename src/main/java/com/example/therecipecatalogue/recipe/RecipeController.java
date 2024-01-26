@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api/v1/recipe")
+@RequestMapping(path = "api/v1/recipes")
 @CrossOrigin("*") // Just use it in QA so the CORS issue goes away - Otherwise you have risk to have different hosts accessing the backend
 public class RecipeController {
 
@@ -20,6 +21,11 @@ public class RecipeController {
     @GetMapping
     public List<Recipe> getRecipes(){
         return recipeService.getRecipes();
+    }
+
+    @GetMapping(path = "recipe/{id}")
+    public Optional<Recipe> findRecipeById(@PathVariable("id") Long id){
+        return recipeService.findRecipeById(id);
     }
 
     @PostMapping

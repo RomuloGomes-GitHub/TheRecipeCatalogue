@@ -3,7 +3,7 @@ import axios from "axios";
 import DeleteRecipeButton from './DeleteRecipeButton'
 import UpdateRecipeForm from './UpdateRecipeForm'
 
-const Recipes = () => {
+const ReturnRecipes = () => {
 
     const [recipes, setRecipes] = useState([]);
 
@@ -36,4 +36,4 @@ const Recipes = () => {
 };
 
 
-export default Recipes
+export default ReturnRecipes
