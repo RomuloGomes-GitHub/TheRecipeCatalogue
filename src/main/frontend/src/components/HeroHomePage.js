@@ -21,7 +21,7 @@ const HeroHomePage = () => {
                     </div>
                 </div>
             </div>
-        </ Container>
+        </Container>
     )
 }
 

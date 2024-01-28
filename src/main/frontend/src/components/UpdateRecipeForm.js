@@ -14,7 +14,7 @@ const UpdateRecipeForm = (recipeId) => {
     const updateRecipe = (event) => {
 
         event.preventDefault();
-        const url = "http://localhost:8080/api/v1/recipe"
+        const url = "http://localhost:8080/api/v1/recipes"
         const parameter = "/" + recipeId.id + "?heading="
 
         console.log(">>>>>>>>>>>>>>>>>>>>>" + recipeId.id + "----" + recipes + "parameter:" + parameter + "----" + recipes.heading)
@@ -49,6 +49,7 @@ const UpdateRecipeForm = (recipeId) => {
     const changeHandler = (event) => {
 
         event.preventDefault()
+        console.log(event.target.name + "Error: " + event.target.value + "kkk" + recipeId.id)
         setRecipes((previousData) => ({
             ...previousData,
             [event.target.name]: event.target.value,
@@ -72,7 +73,7 @@ const UpdateRecipeForm = (recipeId) => {
                 </Modal.Header>
                 <Modal.Body>
                     I will not close if you click outside me. Do not even try to press
-                    escape key>>>>> {recipeId.id}
+                    escape key>>>>> [{recipeId.id}]
 
                     <form onSubmit={updateRecipe}>
                         <div>

@@ -34,12 +34,12 @@ public class RecipeController {
         recipeService.addNewRecipe(recipe);
     }
 
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping(path = "recipe/{id}")
     public void deleteRecipe(@PathVariable("id") Long id){
         recipeService.deleteRecipe(id);
     }
 
-    @PutMapping(path = "{id}")
+    @PutMapping(path = "recipe/{id}")
     public void updateRecipe(@PathVariable("id") Long id,
                              @RequestParam(required = false) String heading,
                              @RequestParam(required = false, defaultValue="0") int rating,
