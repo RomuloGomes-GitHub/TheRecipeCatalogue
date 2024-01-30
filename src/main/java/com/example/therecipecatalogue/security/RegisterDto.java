@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 public class RegisterDto {
 
@@ -37,3 +37,4 @@ public class RegisterDto {
                 '}';
     }
 }
+*/

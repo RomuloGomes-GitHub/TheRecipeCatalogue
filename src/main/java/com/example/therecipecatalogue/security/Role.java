@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import javax.persistence.*;
 
@@ -44,3 +44,4 @@ public class Role {
                 '}';
     }
 }
+*/

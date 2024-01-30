@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -37,6 +37,7 @@ public class SecurityConfig {
 
         http
             .csrf().disable()
+            //.anonymous().disable()
             .exceptionHandling()
             .authenticationEntryPoint(authEntryPoint)
             .and()
@@ -44,10 +45,11 @@ public class SecurityConfig {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/api/**").permitAll()
-            //.antMatchers("/api/v1/recipe").permitAll()
+            //.antMatchers("/*").permitAll()
+            .antMatchers("/api/recipes").permitAll()
+            //.antMatchers("/api/v1/recipes/recipe/**").denyAll()
             //.antMatchers("/api/v1/auth/**").permitAll()
-            //.anyRequest().authenticated()
+            .anyRequest().permitAll()//.authenticated()
             .and()
             .httpBasic();
 
@@ -72,7 +74,7 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(admin, user);
     }*/
-
+/*
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
@@ -88,3 +90,4 @@ public class SecurityConfig {
         return new JwtAuthenticationFilter();
     }
 }
+*/

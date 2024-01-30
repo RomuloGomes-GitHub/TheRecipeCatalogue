@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,3 +9,4 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByUserName(String userName);
     //Boolean existByUserName(String userName);
 }
+*/

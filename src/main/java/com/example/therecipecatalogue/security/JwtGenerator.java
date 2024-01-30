@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
@@ -21,6 +21,8 @@ public class JwtGenerator {
         String userName = authentication.getName();
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + SecurityConstants.JWT_EXPIRATION);
+
+        System.out.println(userName + "userNameuserNameuserNameuserName");
 
         String token = Jwts.builder()
             .setSubject(userName)
@@ -54,3 +56,4 @@ public class JwtGenerator {
         }
     }
 }
+*/

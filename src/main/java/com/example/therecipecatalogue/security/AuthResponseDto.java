@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 public class AuthResponseDto {
 
@@ -8,7 +8,12 @@ public class AuthResponseDto {
     public AuthResponseDto(String accessToken) {
         this.accessToken = accessToken;
     }
-/*
+
+    public AuthResponseDto(String accessToken, String tokenType) {
+        this.accessToken = accessToken;
+        this.tokenType = tokenType;
+    }
+
     public String getAccessToken() {
         return accessToken;
     }
@@ -16,7 +21,7 @@ public class AuthResponseDto {
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
-*/
+
     public String getTokenType() {
         return tokenType;
     }
@@ -33,3 +38,4 @@ public class AuthResponseDto {
                 '}';
     }
 }
+*/

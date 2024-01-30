@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 
 @RestController
@@ -55,4 +57,30 @@ public class AuthController {
         String token = jwtGenerator.generateToken(authentication);
         return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
     }
+
+
+    @GetMapping("check")
+    public ResponseEntity<?> checkAuth() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication authentication2 = authentication;
+        //Authentication authentication2 = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUserName(), loginDto.getPassword()));
+
+        System.out.println("authentication" + authentication + " tttt ");
+        System.out.println("authentication2" + authentication2.getDetails() + " eeee ");
+        //ttpServletRequest request = HttpServletRequest;
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            // User is authenticated
+            System.out.println("it's loooooooooooooooged" + authentication.getName() + " yyy ");
+            return ResponseEntity.ok("User is logged in " + authentication.getPrincipal());
+            //return ResponseEntity.ok("User is logged in " + authentication.getPrincipal());
+        } /*else {
+            // User is not authenticated
+            System.out.println("it's not loooooooooooooooged");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User is not logged in");
+        }*/
+        /*return null;
+    }
 }
+*/

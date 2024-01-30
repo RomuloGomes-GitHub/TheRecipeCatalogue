@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,6 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        System.out.println("loadUserByUsernameloadUserByUsername" + userName);
         UserEntity user = userRepository.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException("User Name not found"));
         return new User(user.getUserName(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
@@ -33,3 +34,4 @@ public class CustomUserDetailsService implements UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 }
+*/

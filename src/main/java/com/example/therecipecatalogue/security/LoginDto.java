@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -40,3 +40,4 @@ public class LoginDto {
                 '}';
     }
 }
+*/

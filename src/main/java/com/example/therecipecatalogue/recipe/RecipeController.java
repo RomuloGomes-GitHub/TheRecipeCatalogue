@@ -1,7 +1,9 @@
 package com.example.therecipecatalogue.recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,14 @@ public class RecipeController {
 
     @GetMapping
     public List<Recipe> getRecipes(){
+
+        System.out.println("oooooooooooooooooook");
+        Authentication username = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("1Useeeeeeeeeeeeeeeeeer: " + username);
+        System.out.println("2Useeeeeeeeeeeeeeeeeer: " + username.getName());
+        System.out.println("3Useeeeeeeeeeeeeeeeeer: " + username.getDetails());
+        System.out.println("4Useeeeeeeeeeeeeeeeeer: " + username.getClass());
+
         return recipeService.getRecipes();
     }
 

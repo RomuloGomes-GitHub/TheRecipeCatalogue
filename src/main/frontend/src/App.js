@@ -7,6 +7,9 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import LoggedIn from './hooks/LoggedIn';
+import Logout from './hooks/Logout';
+
 import Home from './pages/Home';
 import Recipes from './pages/Recipes';
 import Recipe from './pages/Recipe';
@@ -71,6 +74,8 @@ function App() {
                 <Route path="/" element={ <Home /> } />
                 <Route path="/recipes" element={ <Recipes /> } />
                 <Route path="/recipes/recipe/*" element={ <Recipe /> } />
+                <Route path="/demo-controller" element={ <LoggedIn /> } />
+                {/*<Route path="/api/v1/auth/logout" element={ <Logout /> } />*/}
             </Routes>
 
             <Footer />

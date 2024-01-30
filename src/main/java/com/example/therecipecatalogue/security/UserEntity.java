@@ -1,4 +1,4 @@
-package com.example.therecipecatalogue.security;
+/*package com.example.therecipecatalogue.security;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -79,3 +79,4 @@ public class UserEntity {
                 '}';
     }
 }
+*/
