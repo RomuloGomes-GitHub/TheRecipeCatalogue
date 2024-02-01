@@ -26,8 +26,8 @@ public class DemoController {
         System.out.println("authenticationauthentication " + authentication);
 
 
-
-        return ResponseEntity.ok("Hello [" + authentication.getName() + "] from secured endpoint " + authenticationRequest.getUserName() + "]" + authentication);
+        //return ResponseEntity.ok("Hello [" + authentication.getName() + "] from secured endpoint " + authenticationRequest.getUserName() + "]" + authentication);
+        return ResponseEntity.ok(authentication.getName()+"kk");
     }
 
 }

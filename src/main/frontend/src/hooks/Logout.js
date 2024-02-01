@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Logout = () => {
+
     const [isLoggedIn, setLoggedIn] = useState(null);
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const Logout = () => {
 
         </div>
     );
+
 };
 
 export default Logout;

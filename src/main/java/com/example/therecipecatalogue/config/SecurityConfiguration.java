@@ -38,7 +38,6 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
@@ -46,23 +45,29 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            .cors() // enable CORS support
+                .and()
             .csrf().disable()
+            //.cors().and()
             .authorizeRequests()
                 //.antMatchers("/public/**").permitAll()
                 //.antMatchers("/**").authenticated()
-                .antMatchers("/api/v1/auth/authenticate").permitAll()
+                //.antMatchers("/**").permitAll()
                 .antMatchers("/api/v1/demo-controller").permitAll()
-                .antMatchers("/api/v1/recipes").permitAll()
-                .antMatchers("/recipes").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/api/v1/auth/authenticate").permitAll()
+                .antMatchers("/api/v1/signedIn").permitAll()
+                //.antMatchers("/api/v1/recipes").permitAll()
+                //.antMatchers("/recipes").permitAll()
+                //.antMatchers("/login").permitAll()
+                //.antMatchers("/api/v1/recipes").hasAuthority("ADMIN")
                 //.antMatchers("/api/v1/demo/**").permitAll()
+                .antMatchers("/api/v1/recipes").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
             .formLogin()
-                //.loginPage("/login") // Specify the custom login page URL
-
+                //.loginPage("/api/v1/auth") // Specify the custom login page URL
                 .permitAll()
                 .and()
             .logout()

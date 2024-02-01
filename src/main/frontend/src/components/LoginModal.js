@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -63,7 +64,10 @@ const LoginModal = () => {
                     <Button variant="primary">Understood</Button>
                     */}
 
-                    <Login userLogin={user}/>
+                    <Login userLogin={user} onClick={handleClose} />
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
                 </Modal.Footer>
 
             </Modal>

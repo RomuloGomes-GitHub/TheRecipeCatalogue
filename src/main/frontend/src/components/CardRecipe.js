@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 import GetRecipes from '../hooks/GetRecipes';
 
 const CardRecipe = () => {
-
+/*
     return (
 
 
@@ -25,7 +25,12 @@ const CardRecipe = () => {
 
     </Card>
 
-    )
+    )*/
+    return (
+        <>
+            <p>aaaaaa</p>
+        </>
+    );
 }
 
 

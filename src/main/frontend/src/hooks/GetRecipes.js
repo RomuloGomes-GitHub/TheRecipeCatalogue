@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { connect } from 'react-redux';
 import axios from "axios";
 
 import { Link } from "react-router-dom";
@@ -11,21 +12,28 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-//import DeleteRecipeButton from './DeleteRecipeButton'
-//import UpdateRecipeForm from './UpdateRecipeForm'
-
-const GetRecipes = () => {
+const GetRecipes = ({ persistentData, setPersistentData }) => {
 
     const [recipes, setRecipes] = useState([]);
 
     const fetchRecipes = () => {
 
-        const url = "http://localhost:8080/api/v1/recipes"
-        //const parameter = "/" + recipeId.id
+        const token = "Bearer " + persistentData;
 
-        axios.get(url).then(response => {
-            const data = response.data;
+        const headers = {
+          'Authorization': token
+        };
+
+        const url = "http://localhost:8080/api/v1/recipes"
+
+        axios.get(url, {headers: headers}).then(response => {
+
             setRecipes(response.data);
+
+        }).catch(response => {
+
+            console.log(response + " Error: " + response.data)
+
         })
     }
 
@@ -73,17 +81,24 @@ const GetRecipes = () => {
                                     <img src="https://t3.ftcdn.net/jpg/01/21/64/88/360_F_121648819_ZQ0tZ6tjLzxim1SG7CQ86raBw4sglCzB.jpg" width="25" height="25"/>
                                     <img src="https://t3.ftcdn.net/jpg/01/21/64/88/360_F_121648819_ZQ0tZ6tjLzxim1SG7CQ86raBw4sglCzB.jpg" width="25" height="25"/>
                                     <img src="https://t3.ftcdn.net/jpg/01/21/64/88/360_F_121648819_ZQ0tZ6tjLzxim1SG7CQ86raBw4sglCzB.jpg" width="25" height="25"/>
-                                </Container>))))
+                                </Container>
+                            ))))
                         }
-
-                        {/*<button variant="primary" type="button" onClick={deleteButton}  className="btn btn-primary btn-lg px-4 me-md-2">Recipe</button>*/}
 
                     </Card.Body>
                 </Card>
             </Col>
-
         )
     })
 };
 
-export default GetRecipes
+const mapStateToProps = (state) => ({
+    persistentData: state.persistentData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setPersistentData: (data) => dispatch({ type: 'SET_PERSISTENT_DATA', payload: data }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GetRecipes);
+//export default GetRecipes

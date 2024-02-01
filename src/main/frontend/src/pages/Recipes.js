@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 
 //import CardRecipe from '../components/CardRecipe';
 import AddNewRecipeModal from '../components/AddNewRecipeModal';
+import LoggedIn from '../hooks/LoggedIn';
 import GetRecipes from '../hooks/GetRecipes';
 
 const Recipes = () => {

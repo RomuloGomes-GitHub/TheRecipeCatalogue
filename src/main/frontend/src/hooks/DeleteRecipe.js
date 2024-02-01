@@ -29,6 +29,7 @@ const deleteRecipe = (recipeId) => {
             <button type="button" className="btn btn-primary btn-lg px-4 me-md-2" onClick={() => removeRecipe()}>Delete</button>
         </div>
     )
+
 };
 
 export default deleteRecipe

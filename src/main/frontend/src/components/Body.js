@@ -3,7 +3,7 @@ import HeroHomePage from './HeroHomePage';
 import Container from 'react-bootstrap/Container';
 
 const Body = () => {
-
+/*
     return (
         <main>
             <Container fluid bg="light" data-bs-theme="light" className="bg-body-secondary">
@@ -29,7 +29,12 @@ const Body = () => {
                     <p>fffffffffffffffffffff</p>
                 </Container>
         </main>
-    )
+    )*/
+    return (
+        <>
+            <p>aaaaaa</p>
+        </>
+    );
 }
 
 export default Body;

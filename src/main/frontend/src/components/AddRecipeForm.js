@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 const AddRecipeForm = () => {
-
+/*
     const [recipes, setRecipes] = useState([]);
 
     const submitRecipe = (event) => {
@@ -51,6 +51,13 @@ const AddRecipeForm = () => {
             </form>
         </div>
     )
+    */
+
+    return (
+        <>
+            <p>aaaaaa</p>
+        </>
+    );
 };
 
 export default AddRecipeForm

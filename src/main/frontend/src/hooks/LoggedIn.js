@@ -1,51 +1,61 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-const LoggedIn = () => {
-    const [isLoggedIn, setLoggedIn] = useState(null);
+import Login from './Login';
+
+const LoggedIn = ({ persistentData, setPersistentData }) => {
+
+    const [isLoggedIn, setLoggedIn] = useState([]);
+    const [userRole, setUserRole] = useState([]);
+
+    /*const savePersistentData = () => {
+        setPersistentData(inputValue);
+    };*/
 
     useEffect(() => {
-        // Make an HTTP request to check login status
 
-        //eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSLiBHb21lcyIsImlhd…jE1fQ.2A8kJQs074Pub2orknSs9y-eRrfPLS-ByeCHDmoULGo
+        const token = "Bearer " + persistentData;
 
         const headers = {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJSLiBHb21lcyIsImlhdCI6MTcwNjYzNzY2NywiZXhwIjoxNzA2NzI0MDY3fQ.8roWFAEFhBQl17bh2kRTu3lX21BA4DMx078Lmkyl7GA'
-        }
+          'Authorization': token
+        };
 
-        console.log("tututututu");
-        axios.get('http://localhost:8080/api/v1/demo-controller', {headers: headers})
+        axios.get('http://localhost:8080/api/v1/signedIn', {headers: headers})
             .then(response => {
-                console.log(response + " ppp " + response.data.access)
 
-            /*
-            for (let key in response.data) {
-
-                console.log("keykeykey" + key + " ppp " + response.data[key])
-            };*/
-
-
-                setLoggedIn(response.data);
+                setLoggedIn(response.data[0]);
+                setUserRole(response.data[1]);
             })
             .catch(error => {
                 setLoggedIn(false);
             });
-    }, []);
+    });
 
     return (
         <div>
-            <p>aaaaaaaaaaaaaaaaaaaaa</p>
-            <p>aaaaaaaaaaaaaaaaaaaaa</p>
-            <p>aaaaaaaaaaaaaaaaaaaaa</p>
-            <p>{isLoggedIn}</p>
-            {isLoggedIn ? (
-                <p>User is logged in is [{isLoggedIn.userName}]</p>
-            ) : (
-                <p>User is not logged in</p>
-            )}
-            {/* Your other components and UI elements */}
+            {
+                !isLoggedIn ? (
+                    <p>User is not logged in</p>
+                ) : (isLoggedIn === "anonymousUser" ? (
+                    <p>User is not logged in</p>
+                ) : (isLoggedIn !== "anonymousUser" ? (
+                    <p>Hello {isLoggedIn} you are signed in as: {userRole}</p>
+                ) : (
+                    <p>User is not logged in</p>
+                )))
+            }
         </div>
     );
-};
+}
 
-export default LoggedIn;
+const mapStateToProps = (state) => ({
+    persistentData: state.persistentData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setPersistentData: (data) => dispatch({ type: 'SET_PERSISTENT_DATA', payload: data }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoggedIn);
+//export default LoggedIn;
