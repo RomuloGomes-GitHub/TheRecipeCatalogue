@@ -26,6 +26,18 @@ public class RecipeController {
         return recipeService.getRecipes();
     }
 
+    @GetMapping(path = "recipes_top_3_rating")
+    public List<Recipe> getRecipesTop3Rating(){
+
+        return recipeService.getRecipesTop3Rating();
+    }
+
+    @GetMapping(path = "recipes_latest_3")
+    public List<Recipe> getRecipesLatest3(){
+
+        return recipeService.getRecipesLatest3();
+    }
+
     @GetMapping(path = "recipe/{id}")
     public Optional<Recipe> findRecipeById(@PathVariable("id") Long id){
 

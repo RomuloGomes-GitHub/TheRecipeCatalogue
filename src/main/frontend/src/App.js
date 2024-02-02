@@ -27,25 +27,27 @@ function App() {
     return (
 
         <Provider store={Store}>
-            <div data-bs-theme="dark" className="App">
+            <div data-bs-theme="dark" className="App d-flex flex-column min-vh-100" >
 
                 <Header />
 
-                <Routes>
-                    <Route path="/" element={ <Home /> } />
+                <main className="flex-grow-1">
+                    <Routes>
+                        <Route path="/" element={ <Home /> } />
 
-                    <Route path="/signIn" element={ <SignIn /> } />
-                    <Route path="/signUp" element={ <SignUp /> } />
-                    <Route path="/signOut" element={ <SignOut /> } />
+                        <Route path="/signIn" element={ <SignIn /> } />
+                        <Route path="/signUp" element={ <SignUp /> } />
+                        <Route path="/signOut" element={ <SignOut /> } />
 
-                    <Route path="/recipes" element={ <Recipes /> } />
-                    <Route path="/recipes/recipe/*" element={ <Recipe /> } />
+                        <Route path="/recipes" element={ <Recipes /> } />
+                        <Route path="/recipes/recipe/*" element={ <Recipe /> } />
 
-                    <Route path="/about" element={ <About /> } />
-                    <Route path="/contact" element={ <Contact /> } />
+                        <Route path="/about" element={ <About /> } />
+                        <Route path="/contact" element={ <Contact /> } />
 
-                    <Route path="/access-denied" element={ <AccessDenied /> } />
-                </Routes>
+                        <Route path="/access-denied" element={ <AccessDenied /> } />
+                    </Routes>
+                </main>
 
                 <Footer />
             </div>

@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 const Footer = () => {
 
     return (
-        <footer>
+        <footer className="mt-5 py-0 bg-light text-center">
             <div bg="dark" data-bs-theme="dark" className='bg-body-tertiary text-center text-lg-left'>
                 <div className='text-light text-center p-3'>
                     &copy; {new Date().getFullYear()} The Recipe Catalogue by{' '}

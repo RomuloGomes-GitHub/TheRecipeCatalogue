@@ -21,6 +21,14 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
+    public List<Recipe> getRecipesTop3Rating(){
+        return recipeRepository.findTop3ByOrderByRatingDesc();
+    }
+
+    public List<Recipe> getRecipesLatest3(){
+        return recipeRepository.findTop3ByOrderByIdDesc();
+    }
+
     public Optional<Recipe> findRecipeById(Long id){
         return recipeRepository.findById(id);
     }
