@@ -1,5 +1,7 @@
 package com.example.therecipecatalogue.auth;
 
+import com.example.therecipecatalogue.config.LogoutService;
+import com.example.therecipecatalogue.recipe.Recipe;
 import com.example.therecipecatalogue.token.TokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -18,6 +21,7 @@ import java.io.IOException;
 public class AuthenticationController {
 
     private final AuthenticationService service;
+    private final LogoutService logoutService;
     private final TokenRepository tokenRepository;
 
     @PostMapping("register")

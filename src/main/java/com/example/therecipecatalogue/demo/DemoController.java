@@ -18,16 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 //@Hidden
 public class DemoController {
-
+/*
     @GetMapping
     public ResponseEntity<String> sayHello(AuthenticationRequest authenticationRequest) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("authenticationauthentication " + authentication);
-
 
         //return ResponseEntity.ok("Hello [" + authentication.getName() + "] from secured endpoint " + authenticationRequest.getUserName() + "]" + authentication);
         return ResponseEntity.ok(authentication.getName()+"kk");
     }
-
+*/
 }

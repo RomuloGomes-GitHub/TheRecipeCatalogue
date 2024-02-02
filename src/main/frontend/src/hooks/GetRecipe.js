@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import { connect } from 'react-redux';
 import axios from "axios";
 
@@ -27,14 +27,9 @@ const GetRecipe = ({ persistentData, setPersistentData }) =>  {
         const parameter = "/" + lastUrlSegment
 
         axios.get(url + parameter, {headers: headers}).then(response => {
-
-            const data = response.data;
             setRecipe(response.data);
-
         }).catch(response => {
-
             console.log(response + " Error: " + response.data)
-
         })
     }
 

@@ -22,8 +22,6 @@ public class SignedInController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        System.out.println("authooooooo " + authentication);
-
         Object userClass = authentication.getPrincipal();
         User userInfo = (User) userClass;
         String[] userDetails = new String[2];

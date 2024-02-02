@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 
 import { useLocation } from 'react-router-dom'
 
-import SignInForm from '../components/SignInForm';
+import SignOutCall from '../hooks/SignOutCall';
 
-
-const SignIn = (props) => {
+const SignOut = (props) => {
 
     return (
         <div>
-            <SignInForm />
+            <SignOutCall />
         </div>
     )
 }
 
-export default SignIn;
+export default SignOut;

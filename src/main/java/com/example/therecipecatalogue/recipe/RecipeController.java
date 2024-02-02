@@ -23,19 +23,21 @@ public class RecipeController {
     @GetMapping
     public List<Recipe> getRecipes(){
 
-        System.out.println("oooooooooooooooooook");
-        Authentication username = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("1Useeeeeeeeeeeeeeeeeer: " + username);
-        System.out.println("2Useeeeeeeeeeeeeeeeeer: " + username.getName());
-        System.out.println("3Useeeeeeeeeeeeeeeeeer: " + username.getDetails());
-        System.out.println("4Useeeeeeeeeeeeeeeeeer: " + username.getClass());
-
         return recipeService.getRecipes();
     }
 
     @GetMapping(path = "recipe/{id}")
     public Optional<Recipe> findRecipeById(@PathVariable("id") Long id){
-        return recipeService.findRecipeById(id);
+
+        Optional<Recipe> recipe = recipeService.findRecipeById(id);
+
+        if(recipe.isPresent()){
+            System.out.println("Item found");
+            return recipeService.findRecipeById(id);
+        } else {
+            System.out.println("Item does not exist");
+            return null;
+        }
     }
 
     @PostMapping
@@ -46,7 +48,15 @@ public class RecipeController {
 
     @DeleteMapping(path = "recipe/{id}")
     public void deleteRecipe(@PathVariable("id") Long id){
-        recipeService.deleteRecipe(id);
+
+        Optional<Recipe> recipe = recipeService.findRecipeById(id);
+
+        if(recipe.isPresent()){
+            System.out.println("Item deleted");
+            recipeService.deleteRecipe(id);
+        } else {
+            System.out.println("Item does not exist");
+        }
     }
 
     @PutMapping(path = "recipe/{id}")
@@ -61,6 +71,14 @@ public class RecipeController {
                              @RequestParam(required = false) String ingredients,
                              @RequestParam(required = false) String method){
 
-        recipeService.updateRecipe(id, heading, rating, description, preparationTimeMinutes, cookingTimeMinutes, serves, difficulty, ingredients, method);
+
+        Optional<Recipe> recipe = recipeService.findRecipeById(id);
+
+        if(recipe.isPresent()){
+            System.out.println("Item updated");
+            recipeService.updateRecipe(id, heading, rating, description, preparationTimeMinutes, cookingTimeMinutes, serves, difficulty, ingredients, method);
+        } else {
+            System.out.println("Item does not exist");
+        }
     }
 }

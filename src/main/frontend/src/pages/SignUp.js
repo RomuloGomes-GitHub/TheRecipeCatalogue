@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import { useLocation } from 'react-router-dom'
 
-import SignInForm from '../components/SignInForm';
+import SignUpForm from '../components/SignUpForm';
 
 
-const SignIn = (props) => {
+const SignUp = (props) => {
 
     return (
         <div>
-            <SignInForm />
+            <SignUpForm />
         </div>
     )
 }
 
-export default SignIn;
+export default SignUp;

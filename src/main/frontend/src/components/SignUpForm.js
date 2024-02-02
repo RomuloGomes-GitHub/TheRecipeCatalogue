@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 //import Login from '../hooks/Login';
 
-const SigInForm = ({ persistentData, setPersistentData }) => {
+const SignUpForm = ({ persistentData, setPersistentData }) => {
 
     const [user, setUser] = useState([]);
     const [show, setShow] = useState(false);
@@ -20,10 +20,10 @@ const SigInForm = ({ persistentData, setPersistentData }) => {
         setPersistentData(tokenReceived);
     };
 
-    const submitSignIn = (event) => {
+    const submitSignUp = (event) => {
 
         event.preventDefault()
-        const url = "http://localhost:8080/api/v1/auth/authenticate";
+        const url = "http://localhost:8080/api/v1/auth/register";
         const parameter = user;
 
         axios.post(url, parameter).then(response => {
@@ -55,10 +55,10 @@ const SigInForm = ({ persistentData, setPersistentData }) => {
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/800px-Good_Food_Display_-_NCI_Visuals_Online.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"/>
                         </div>
                         <div class="col-lg-6">
-                            <h1 class="display-5 fw-bold lh-1 mb-3">Sign in</h1>
-                            <p class="lead">Welcome back! Ready to savor more flavors? Sign in to your account and continue your culinary journey with our vibrant recipe-sharing community.</p>
+                            <h1 class="display-5 fw-bold lh-1 mb-3">Sign up</h1>
+                            <p class="lead">Join our culinary community! Sign up now to share and discover delightful recipes. Let's cook up a storm together"</p>
 
-                            <Form onSubmit={submitSignIn}>
+                            <Form onSubmit={submitSignUp}>
                                 <Form.Group controlId="formName">
                                     <Form.Label>Name</Form.Label>
                                     <Form.Control type="text" name="userName" placeholder="Enter your user name" onChange={changeHandler} />
@@ -87,5 +87,5 @@ const mapDispatchToProps = (dispatch) => ({
     setPersistentData: (data) => dispatch({ type: 'SET_PERSISTENT_DATA', payload: data }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SigInForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
 //export default SigInForm

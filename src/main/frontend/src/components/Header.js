@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { createContext, useContext, useState, useEffect} from "react";
 
 import { Link } from "react-router-dom";
 
@@ -11,17 +11,17 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 import LoginModal from '../components/LoginModal';
-import LoggedIn from '../hooks/LoggedIn';
+import AuthNavigation from '../components/AuthNavigation';
+
+const UserContext = createContext();
 
 const Header = () => {
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("userName");
-        console.log(loggedInUser+" loggedInUserloooooooooooooooged " + Storage.length + " dsa " + Window.localStorage);
 
         if (loggedInUser) {
             const foundUser = JSON.parse(loggedInUser);
-            console.log(foundUser+"loooooooooooooooged");
         }
 
     }, []);
@@ -33,13 +33,7 @@ const Header = () => {
                 <Container fluid>
                     <Navbar.Brand href="#home">The Recipe Catalogue</Navbar.Brand>
                     <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text>
-                            <LoggedIn />
-                            <LoginModal />
-
-                            <Nav.Link as={Link} to={"/auth"}>Sign In</Nav.Link>
-
-                        </Navbar.Text>
+                        <AuthNavigation />
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
@@ -55,7 +49,8 @@ const Header = () => {
                         >
                             <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
                             <Nav.Link as={Link} to={"/recipes"}>Recipes</Nav.Link>
-                            <Nav.Link as={Link} to={"/demo-contoller"}>Demo</Nav.Link>
+                            <Nav.Link as={Link} to={"/about"}>About</Nav.Link>
+                            <Nav.Link as={Link} to={"/contact"}>Contact</Nav.Link>
                             {/*<
                             <NavDropdown title="Link" id="navbarScrollingDropdown">
                                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
@@ -67,12 +62,12 @@ const Header = () => {
                                     Something else here
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            */}
                             <Nav.Link href="#" disabled>
                                 Link
                             </Nav.Link>
+                            */}
                         </Nav>
-                        <Form className="d-flex">
+                        {/*<Form className="d-flex">
                             <Form.Control
                                 type="search"
                                 placeholder="Search"
@@ -80,7 +75,7 @@ const Header = () => {
                                 aria-label="Search"
                             />
                             <Button variant="outline-success">Search</Button>
-                        </Form>
+                        </Form>*/}
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
@@ -102,6 +97,13 @@ const Header = () => {
         </header>
     )
 }
+
+
+// Custom hook to access the userRole value
+export const useUserRole = () => {
+  const userRole = useContext(UserContext);
+  return userRole;
+};
 
 export default Header;
 

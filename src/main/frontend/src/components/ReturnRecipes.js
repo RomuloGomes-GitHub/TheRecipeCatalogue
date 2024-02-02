@@ -1,19 +1,23 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import DeleteRecipeButton from './DeleteRecipeButton'
-import UpdateRecipeForm from './UpdateRecipeForm'
 
-const ReturnRecipes = () => {
+const ReturnRecipes = ({ persistentData, setPersistentData }) => {
 
     const [recipes, setRecipes] = useState([]);
 
     const fetchRecipes = () => {
 
+        const token = "Bearer " + persistentData;
+
+        const headers = {
+          'Authorization': token
+        };
+
         const url = "http://localhost:8080/api/v1/recipe"
         //const parameter = "/" + recipeId.id
 
-        axios.get(url).then(response => {
-            const data = response.data;
+        axios.get(url, {headers: headers}).then(response => {
             setRecipes(response.data);
         })
     }
@@ -35,5 +39,13 @@ const ReturnRecipes = () => {
     })
 };
 
+const mapStateToProps = (state) => ({
+    persistentData: state.persistentData,
+});
 
-export default ReturnRecipes
+const mapDispatchToProps = (dispatch) => ({
+    setPersistentData: (data) => dispatch({ type: 'SET_PERSISTENT_DATA', payload: data }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReturnRecipes);
+//export default ReturnRecipes

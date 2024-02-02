@@ -10,7 +10,6 @@ import GetRecipe from '../hooks/GetRecipe';
 import UpdateRecipe from '../hooks/UpdateRecipe';
 import DeleteRecipe from '../hooks/DeleteRecipe';
 
-import UpdateRecipeForm from './UpdateRecipeForm';
 import UpdateRecipeModal from './UpdateRecipeModal';
 
 const RecipeContent = (recipeReceived) => {
@@ -25,7 +24,7 @@ const RecipeContent = (recipeReceived) => {
                     <div class="row flex-lg-row align-items-center g-5 py-5">
                         <h1>{recipe.heading}</h1>
                         <UpdateRecipeModal recipe={recipe} />
-                        <DeleteRecipe id={recipe.id} />
+                        <DeleteRecipe recipeId={recipe.id} />
                         <div class="col-10 col-sm-8 col-lg-6">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/800px-Good_Food_Display_-_NCI_Visuals_Online.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy"/>
                         </div>

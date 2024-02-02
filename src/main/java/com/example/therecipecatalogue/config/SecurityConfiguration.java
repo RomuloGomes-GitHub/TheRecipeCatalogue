@@ -41,6 +41,7 @@ public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
+    private final AccessDeniedService accessDeniedService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -50,19 +51,17 @@ public class SecurityConfiguration {
             .csrf().disable()
             //.cors().and()
             .authorizeRequests()
-                //.antMatchers("/public/**").permitAll()
-                //.antMatchers("/**").authenticated()
-                //.antMatchers("/**").permitAll()
-                .antMatchers("/api/v1/demo-controller").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/api/v1/auth/register").permitAll()
                 .antMatchers("/api/v1/auth/authenticate").permitAll()
                 .antMatchers("/api/v1/signedIn").permitAll()
-                //.antMatchers("/api/v1/recipes").permitAll()
-                //.antMatchers("/recipes").permitAll()
-                //.antMatchers("/login").permitAll()
+                .antMatchers("/api/v1/recipes").permitAll()
                 //.antMatchers("/api/v1/recipes").hasAuthority("ADMIN")
-                //.antMatchers("/api/v1/demo/**").permitAll()
-                .antMatchers("/api/v1/recipes").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
+                .and()
+            .exceptionHandling()
+                //.accessDeniedPage("/access-denied")
+                .accessDeniedHandler(accessDeniedService)
                 .and()
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
@@ -71,91 +70,14 @@ public class SecurityConfiguration {
                 .permitAll()
                 .and()
             .logout()
+                .addLogoutHandler(logoutHandler)
+                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+                .permitAll();
+            /*.logout()
                 //.logoutUrl("/logout") // Specify the custom logout URL
+                .addLogoutHandler(logoutHandler)
                 .permitAll(); // Allow anyone to access the logout URL;*/
-                //.antMatchers("/api/v1/recipes").permitAll()
-                //.anyRequest().authenticated();
-                /*.and()
-            .formLogin()
-                .loginPage("/login") // Specify the custom login page URL
-                .permitAll() // Allow anyone to access the login page
-                .and()
-            .logout()
-                .logoutUrl("/logout") // Specify the custom logout URL
-                .permitAll(); // Allow anyone to access the logout URL
-*/
+
         return http.build();
     }
 }
-
-/*
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/api/v1/auth/**").permitAll()
-                .antMatchers("/api/v1/demo-controller").permitAll()
-                .and()
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        .formLogin()
-        .loginPage("/login") // Specify the custom login page URL
-        .permitAll()
-        .and()
-        .logout()
-        .logoutUrl("/logout") // Specify the custom logout URL
-        .permitAll();
-*/
-
-
-
-
-
-
-   /*
-        http
-                //.csrf(AbstractHttpConfigurer::disable)
-            .csrf().disable()
-            //.authorizeHttpRequests(req ->
-            .authorizeHttpRequests()
-            .requestMatchers(new AntPathRequestMatcher("/api/**"))
-            .permitAll()
-            /*.requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
-            .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
-            .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-            .requestMatchers(PUT, "/api/v1/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
-            .requestMatchers(DELETE, "/api/v1/management/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
-            */
-            /*.anyRequest()
-                    .authenticated()
-                    .and()
-
-                    .formLogin()
-                    .loginPage("/loginPage")
-                    .loginProcessingUrl("/authenticateTheUser")
-                    .defaultSuccessUrl("/", true)
-                    .permitAll()
-                    .and()
-                    //)
-                    //.sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
-                    .authenticationProvider(authenticationProvider)
-                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        .logout(logout ->
-        logout.logoutUrl("/api/v1/auth/logout")
-        .addLogoutHandler(logoutHandler)
-        .logoutSuccessHandler((request, response, authentication) -> System.out.println("ppp "+SecurityContextHolder.getContext())));
-        */
-            //.logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()));
-        //.logout()
-        //.permitAll();
-            /*.logout(logout ->
-                logout.logoutUrl("/api/v1/auth/logout")
-                    .addLogoutHandler(logoutHandler)
-                    .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()));*/
-            /*.logout(logout ->
-                logout.logoutUrl("/api/v1/auth/logout")
-                    .addLogoutHandler(logoutHandler)
-                    .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-            );*/

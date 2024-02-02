@@ -1,6 +1,7 @@
 package com.example.therecipecatalogue.recipe;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 public class Recipe {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String heading;
     private int rating;

@@ -39,15 +39,8 @@ const AddNewRecipeModal = () => {
                 </Modal.Header>
 
                 <Modal.Body>
-                    I will not close if you click outside me. Do not even try to press
-                    escape key>>>>> [{recipe.id}]
-
                     <form>
                         <div>
-                            <label>Id...</label>
-                            <br />
-                            <input type='text' name="id" placeholder="Id" onChange={changeHandler}/>
-                            <br />
                             <label>Heading...</label>
                             <br />
                             <input type='text' name="heading" placeholder="Heading" onChange={changeHandler}/>

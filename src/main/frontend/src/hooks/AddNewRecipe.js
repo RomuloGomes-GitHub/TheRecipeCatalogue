@@ -1,56 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
 import axios from "axios";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
 
-const AddNewRecipe = (recipeReceived) =>  {
+const AddNewRecipe = ({recipe, persistentData, setPersistentData}) =>  {
 
-    const [recipe, setRecipe] = useState([]);
+    const navigate = useNavigate();
 
     const submitRecipe = (event) => {
 
-        //const recipeId = fieldsReceived.updateFields.id;
-        //const recipeFields = fieldsReceived.updateFields.recipeFields;
-        const url = "http://localhost:8080/api/v1/recipes";
-        const parameter = recipeReceived.recipe;
+        const token = "Bearer " + persistentData;
 
-        //console.log(recipeReceived);
-        //console.log(parameter.recipe);
-/*
-        if(Object.keys(recipeFields).length > 0){
-
-            let recipeFieldsIndex = 0;
-            parameter = parameter + "?";
-
-            for (let key in recipeFields) {
-
-                parameter = parameter + key + "=" + recipeFields[key];
-                recipeFieldsIndex++;
-
-                if (recipeFieldsIndex < Object.keys(recipeFields).length){
-                    parameter = parameter + "&";
-                }
-            };
-
-            axios.put(url + parameter).then(response => {
-                console.log("Item updated");
-            }).catch(response => {
-                console.log(response + "Error: " + response.data);
-            })
-
-            window.location.reload(false);
+        const headers = {
+          'Authorization': token
         };
-        */
 
-        axios.post(url, parameter).then(response => {
+        const url = "http://localhost:8080/api/v1/recipes";
+        const parameter = recipe;
+
+        axios.post(url, parameter, {headers: headers}).then(response => {
             console.log("Item added");
         }).catch(response => {
             console.log(response + "Error: " + response.data)
         })
 
-        window.location.reload(false);
+        navigate('/recipes');
     }
 
     return (
@@ -61,4 +38,13 @@ const AddNewRecipe = (recipeReceived) =>  {
 
 };
 
-export default AddNewRecipe
+const mapStateToProps = (state) => ({
+    persistentData: state.persistentData,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    setPersistentData: (data) => dispatch({ type: 'SET_PERSISTENT_DATA', payload: data }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewRecipe);
+//export default AddNewRecipe
