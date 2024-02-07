@@ -5,55 +5,100 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 
-const UpdateRecipe = ({updateFields, persistentData, setPersistentData }) =>  {
+const UpdateRecipe = ({updateFields, errors, persistentData, setPersistentData }) =>  {
 
     const navigate = useNavigate();
     const [reRender, setReRender] = useState("");
+    const [formChecked, setFormChecked] = useState(true);
 
     const submitRecipe = (event) => {
 
-        const token = "Bearer " + persistentData;
+        let submitForm = true;
 
-        const headers = {
-          'Authorization': token
-        };
+        if (Object.keys(errors).length === 0) {
+          submitForm = false;
+          setFormChecked(false);
 
-        const recipeId = updateFields.id;
-        const recipeFields = updateFields.recipeFields;
-        const url = "http://localhost:8080/api/v1/recipes/recipe";
-        let parameter = "/" + recipeId + "/";
+        } else {
 
-        if(Object.keys(recipeFields).length > 0){
-
-            let recipeFieldsIndex = 0;
-            parameter = parameter + "?";
-
-            for (let key in recipeFields) {
-
-                parameter = parameter + key + "=" + recipeFields[key];
-                recipeFieldsIndex++;
-
-                if (recipeFieldsIndex < Object.keys(recipeFields).length){
-                    parameter = parameter + "&";
+            for (const error in errors) {
+                if(errors[error] !== undefined){
+                    if(errors[error].includes("Invalid format.")){
+                        submitForm = false;
+                        setFormChecked(false);
+                        break;
+                    }
                 }
+            }
+        }
+
+        if(submitForm){
+
+            const token = "Bearer " + persistentData;
+
+            const headers = {
+              'Authorization': token
             };
 
-            axios.put(url + parameter, {}, {headers: headers}).then(response => {
-                console.log("Item updated");
-            }).catch(response => {
-                console.log(response + "Error: " + response.data);
-            })
+            const recipeId = updateFields.id;
+            const recipeFields = updateFields.recipeFields;
+            const url = "http://localhost:8080/api/v1/recipes/recipe";
+            let redirectParameter = recipeId;
+            let parameter = "/" + recipeId + "/";
 
-            //window.location.reload(false);
-            //setReRender(url + parameter);
-            navigate("/recipes");
-        };
+            if(Object.keys(recipeFields).length > 0){
+
+                let recipeFieldsIndex = 0;
+                parameter = parameter + "?";
+
+                for (let key in recipeFields) {
+
+                    parameter = parameter + key + "=" + recipeFields[key];
+                    recipeFieldsIndex++;
+
+                    if (recipeFieldsIndex < Object.keys(recipeFields).length){
+                        parameter = parameter + "&";
+                    }
+                };
+
+                axios.put(url + parameter, {}, {headers: headers}).then(response => {
+                    console.log("Item updated");
+                }).catch(response => {
+                    console.log(response + "Error: " + response.data);
+                })
+
+                //window.location.reload(false);
+                //setReRender(url + parameter);
+                navigate("/redirect", {state: {param: "/recipes/recipe/" + redirectParameter}});
+                //navigate("/redirect", {state: {param: "/recipes"}});
+            };
+        }
     }
 
     return (
         <>
-            <button type="button" className="btn btn-primary btn-lg px-4 me-md-2" onClick={() => submitRecipe()} >Submit</button>
+            {/*
+            <Button variant="outline-success" onClick={() => submitRecipe()} className="btn btn-dark btn-lg px-4 mx-2">
+                Update recipe
+            </Button>
+            */
+            }
+
+            {
+                (formChecked ? (
+                    <>
+                        <Button variant="outline-success" onClick={() => submitRecipe()} className="btn btn-dark btn-lg px-4 mx-2">Update Recipe</Button>
+                    </>
+                ) : (
+                    <>
+                        <Alert variant='danger'>Fix the data and leave no empty fields.</Alert>
+                        <Button variant="outline-success" onClick={() => submitRecipe()} className="btn btn-dark btn-lg px-4 mx-2">Update Recipe</Button>
+                    </>)
+                )
+            }
         </>
     );
 

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
+import UpdateAndDeleteRecipeBar from '../components/UpdateAndDeleteRecipeBar';
 import RecipeContent from '../components/RecipeContent';
 
 const GetRecipe = ({ persistentData, setPersistentData }) =>  {
@@ -39,6 +40,7 @@ const GetRecipe = ({ persistentData, setPersistentData }) =>  {
 
     return (
         <>
+            <UpdateAndDeleteRecipeBar recipeChanges={recipe} />
             <RecipeContent recipe={recipe} />
         </>
     )

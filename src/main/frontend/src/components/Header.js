@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect} from "react";
+import React, { useState, useEffect} from "react";
+import { connect } from 'react-redux';
 
 import { Link } from "react-router-dom";
 
@@ -7,32 +8,24 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Overlay from 'react-bootstrap/Overlay';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 import LoginModal from '../components/LoginModal';
 import AuthNavigation from '../components/AuthNavigation';
-
-const UserContext = createContext();
+import AddNewRecipeModal from '../components/AddNewRecipeModal';
 
 const Header = () => {
 
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem("userName");
-
-        if (loggedInUser) {
-            const foundUser = JSON.parse(loggedInUser);
-        }
-
-    }, []);
 
     return (
         <header>
 
             <Navbar bg="dark" data-bs-theme="dark" className="bg-body-tertiary">
                 <Container fluid>
-                    <Navbar.Brand href="#home">The Recipe Catalogue</Navbar.Brand>
-                    <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Brand as={Link} to={"/"}>The Recipe Catalogue</Navbar.Brand>
+                    <Navbar.Collapse className="justify-content-end" style={{ zIndex: 2000 }}>
                         <AuthNavigation />
                     </Navbar.Collapse>
                 </Container>
@@ -99,11 +92,57 @@ const Header = () => {
 }
 
 
-// Custom hook to access the userRole value
-export const useUserRole = () => {
-  const userRole = useContext(UserContext);
-  return userRole;
-};
+const mapStateToProps = (state) => ({
+    persistentData: state.persistentData,
+});
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+    setPersistentData: (data) => dispatch({ type: 'SET_PERSISTENT_DATA', payload: data }),
+});
 
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+//export default Header;
+/*
+ {
+                            userRoleCheck == "ADMIN" ? (
+                                <button type="submit" className="btn btn-dark btn-lg px-4 mt-4">Sign in</button>)
+                            : (userRoleCheck == "USER" ? (
+                                <p>2</p>
+
+
+            <Nav className="ml-auto">
+                <Nav.Link  onClick={handleShow}>Add new recipe</Nav.Link>
+                <Overlay target={target.current} show={showw} placement="left">
+                {({
+                  placement: _placement,
+                  arrowProps: _arrowProps,
+                  showw: _show,
+                  popper: _popper,
+                  hasDoneInitialMeasure: _hasDoneInitialMeasure,
+                  ...props
+                }) => (
+                  <div
+                    {...props}
+                    style={{
+                      position: 'absolute',
+                      backgroundColor: 'rgba(255, 100, 100, 0.85)',
+                      padding: '2px 10px',
+                      color: 'white',
+                      borderRadius: 3,
+                      ...props.style,
+                    }}
+                  >
+                    Simple tooltip
+                  </div>
+                )}
+                </Overlay>
+                <Nav.Link  ref={target} onClick={() => setShoww(!showw)}>Add new recipew</Nav.Link>
+            </Nav>
+
+                                )
+                            : (
+                                <p>3</p>)
+                            )
+                        }
+
+                        */

@@ -59,6 +59,7 @@ public class SecurityConfiguration {
                 .antMatchers("/api/v1/auth/authenticate").permitAll()
                 .antMatchers("/api/v1/signedIn").permitAll()
                 .antMatchers("/api/v1/recipes").permitAll()
+                .antMatchers("/api/v1/recipes/recipe/*").permitAll()
                 .antMatchers("/api/v1/recipes/recipes_top_3_rating").permitAll()
                 .antMatchers("/api/v1/recipes/recipes_latest_3").permitAll()
                 //.antMatchers("/api/v1/recipes").hasAuthority("ADMIN")

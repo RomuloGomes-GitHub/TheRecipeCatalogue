@@ -6,6 +6,7 @@ import HeroHomePage from '../components/HeroHomePage';
 import GetRecipesTop3Rating from '../hooks/GetRecipesTop3Rating';
 import GetRecipesLatest3 from '../hooks/GetRecipesLatest3';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Home = () => {
 
@@ -20,7 +21,7 @@ const Home = () => {
             </Container>
 
             <Container>
-                <Row className='row-cols-1 row-cols-md-2 row-cols-lg-auto g-5'>
+                <Row className='row-cols-1 row-cols-md-2 row-cols-lg-3 g-5'>
                     <GetRecipesTop3Rating />
                 </Row>
             </Container>
@@ -32,7 +33,7 @@ const Home = () => {
             </Container>
 
             <Container>
-                <Row className='row-cols-1 row-cols-md-2 row-cols-lg-auto g-5'>
+                <Row className='row-cols-1 row-cols-md-2 row-cols-lg-3 g-5'>
                     <GetRecipesLatest3 />
                 </Row>
             </Container>

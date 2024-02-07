@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { connect } from 'react-redux';
 import axios from "axios";
 
+import { Link, useNavigate } from "react-router-dom";
+
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -10,6 +12,7 @@ import Button from 'react-bootstrap/Button';
 
 const SigInForm = ({ persistentData, setPersistentData }) => {
 
+    const navigate = useNavigate();
     const [user, setUser] = useState([]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -34,6 +37,7 @@ const SigInForm = ({ persistentData, setPersistentData }) => {
             console.log(response + " Error: " + response.data)
         })
 
+        navigate('/');
         //window.location.reload(false);
     }
 
@@ -56,7 +60,7 @@ const SigInForm = ({ persistentData, setPersistentData }) => {
                         </div>
                         <div class="col-lg-6">
                             <h1 class="display-5 fw-bold lh-1 mb-3">Sign in</h1>
-                            <p class="lead">Welcome back! Ready to savor more flavors? Sign in to your account and continue your culinary journey with our vibrant recipe-sharing community.</p>
+                            <p class="lead" style={{ textAlign: 'justify' }}>Welcome back! Ready to savor more flavors? Sign in to your account and continue your culinary journey with our vibrant recipe-sharing community.</p>
 
                             <Form onSubmit={submitSignIn}>
                                 <Form.Group controlId="formName">
@@ -68,7 +72,8 @@ const SigInForm = ({ persistentData, setPersistentData }) => {
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control type="password" name="password" placeholder="Enter your password" onChange={changeHandler} />
                                 </Form.Group>
-                                <Button type="submit">Sign in</Button>
+                                <button type="submit" className="btn btn-dark btn-lg px-4 mt-4">Sign in</button>
+
                             </Form>
 
                         </div>

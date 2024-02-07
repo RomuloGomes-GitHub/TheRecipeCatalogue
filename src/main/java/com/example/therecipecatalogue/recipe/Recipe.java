@@ -1,9 +1,6 @@
 package com.example.therecipecatalogue.recipe;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -12,20 +9,27 @@ public class Recipe {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(length = 150)
     private String heading;
     private int rating;
+    @Column(length = 250)
     private String description;
     private int preparationTimeMinutes;
     private int cookingTimeMinutes;
     private int serves;
     private int difficulty;
+    @Column(length = 500)
     private String ingredients;
+    @Column(length = 500)
     private String method;
+    @Column(length = 500)
+    private String urlImage;
 
     public Recipe() {
     }
 
-    public Recipe(String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method) {
+    public Recipe(String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method, String urlImage) {
         this.heading = heading;
         this.rating = rating;
         this.description = description;
@@ -35,9 +39,10 @@ public class Recipe {
         this.difficulty = difficulty;
         this.ingredients = ingredients;
         this.method = method;
+        this.urlImage = urlImage;
     }
 
-    public Recipe(Long id, String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method) {
+    public Recipe(Long id, String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method, String urlImage) {
         this.id = id;
         this.heading = heading;
         this.rating = rating;
@@ -48,6 +53,7 @@ public class Recipe {
         this.difficulty = difficulty;
         this.ingredients = ingredients;
         this.method = method;
+        this.urlImage = urlImage;
     }
 
     public Long getId() {
@@ -130,6 +136,14 @@ public class Recipe {
         this.method = method;
     }
 
+    public String getUrlImaged() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -143,6 +157,7 @@ public class Recipe {
                 ", difficulty=" + difficulty +
                 ", ingredients='" + ingredients + '\'' +
                 ", method='" + method + '\'' +
+                ", urlImage='" + urlImage + '\'' +
                 '}';
     }
 }

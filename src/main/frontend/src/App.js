@@ -6,8 +6,10 @@ import { Routes, Route } from 'react-router-dom'
 
 import Store from './store/Store';
 
+import TopMessageBar from './components/TopMessageBar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import AddNewRecipeBar from './components/AddNewRecipeBar';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -17,6 +19,7 @@ import Recipe from './pages/Recipe';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import AccessDenied from './components/AccessDenied';
+import RedirectPage from './components/RedirectPage';
 
 import './App.css';
 
@@ -29,6 +32,7 @@ function App() {
         <Provider store={Store}>
             <div data-bs-theme="dark" className="App d-flex flex-column min-vh-100" >
 
+                <TopMessageBar />
                 <Header />
 
                 <main className="flex-grow-1">
@@ -46,6 +50,7 @@ function App() {
                         <Route path="/contact" element={ <Contact /> } />
 
                         <Route path="/access-denied" element={ <AccessDenied /> } />
+                        <Route path="/redirect" element={ <RedirectPage /> } />
                     </Routes>
                 </main>
 

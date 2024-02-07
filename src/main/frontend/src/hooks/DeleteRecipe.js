@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 
 const DeleteRecipe = ({recipeId, persistentData, setPersistentData}) => {
 
@@ -17,7 +18,6 @@ const DeleteRecipe = ({recipeId, persistentData, setPersistentData}) => {
         const headers = {
           'Authorization': token
         };
-
 
         //event.preventDefault();
         const url = "http://localhost:8080/api/v1/recipes/recipe"
@@ -35,7 +35,9 @@ const DeleteRecipe = ({recipeId, persistentData, setPersistentData}) => {
 
     return (
         <div>
-            <button type="button" className="btn btn-primary btn-lg px-4 me-md-2" onClick={() => removeRecipe()}>Delete</button>
+            <Button variant="outline-danger" onClick={() => removeRecipe()} className="btn btn-dark btn-lg px-4 mx-2">
+                Delete recipe
+            </Button>
         </div>
     )
 

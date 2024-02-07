@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { connect } from 'react-redux';
 import axios from "axios";
 
+import { Link, useNavigate } from "react-router-dom";
+
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -10,6 +12,7 @@ import Button from 'react-bootstrap/Button';
 
 const SignUpForm = ({ persistentData, setPersistentData }) => {
 
+    const navigate = useNavigate();
     const [user, setUser] = useState([]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -34,6 +37,7 @@ const SignUpForm = ({ persistentData, setPersistentData }) => {
             console.log(response + " Error: " + response.data)
         })
 
+        navigate('/');
         //window.location.reload(false);
     }
 
@@ -56,7 +60,7 @@ const SignUpForm = ({ persistentData, setPersistentData }) => {
                         </div>
                         <div class="col-lg-6">
                             <h1 class="display-5 fw-bold lh-1 mb-3">Sign up</h1>
-                            <p class="lead">Join our culinary community! Sign up now to share and discover delightful recipes. Let's cook up a storm together"</p>
+                            <p class="lead" style={{ textAlign: 'left' }}>Join our culinary community! Sign up now to share and discover delightful recipes. Let's cook up a storm together"</p>
 
                             <Form onSubmit={submitSignUp}>
                                 <Form.Group controlId="formName">
@@ -68,7 +72,7 @@ const SignUpForm = ({ persistentData, setPersistentData }) => {
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control type="password" name="password" placeholder="Enter your password" onChange={changeHandler} />
                                 </Form.Group>
-                                <Button type="submit">Sign in</Button>
+                                <button type="submit" className="btn btn-dark btn-lg px-4 mt-4">Sign up</button>
                             </Form>
 
                         </div>

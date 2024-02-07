@@ -1,19 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
+import { Link } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Overlay from 'react-bootstrap/Overlay';
+import Button from 'react-bootstrap/Button';
 
+import AddNewRecipeBar from '../components/AddNewRecipeBar';
 import AddNewRecipeModal from '../components/AddNewRecipeModal';
 import GetRecipes from '../hooks/GetRecipes';
 
 const Recipes = () => {
+
+    const [show, setShow] = useState(false);
+    const target = useRef(null);
+    var userRoleCheck = "";
+
+    if(document.getElementById('userRole') != null){
+        userRoleCheck = document.getElementById('userRole').textContent;
+    }
+
+    useEffect(() => {
+        if(document.getElementById('userRole') != null){
+            userRoleCheck = document.getElementById('userRole').textContent;
+        }
+    });
  //style={{ textAlign: 'justify' }}
     return (
         <div>
-            <AddNewRecipeModal />
+
+            <AddNewRecipeBar />
 
             <div className="px-4 pt-5 text-center">
                 <h1 class="display-5 fw-bold lh-1 mb-3">All recipes</h1>
@@ -37,7 +59,7 @@ const Recipes = () => {
             */}
 
             <Container className="mt-5">
-                <Row className='row-cols-1 row-cols-md-2 row-cols-lg-auto g-5'>
+                <Row className='row-cols-1 row-cols-md-2 row-cols-lg-3 g-5'>
                     <GetRecipes />
                 </Row>
             </Container>
