@@ -81,14 +81,15 @@ public class RecipeController {
                              @RequestParam(required = false, defaultValue="0") Integer serves,
                              @RequestParam(required = false, defaultValue="0") Integer difficulty,
                              @RequestParam(required = false) String ingredients,
-                             @RequestParam(required = false) String method){
+                             @RequestParam(required = false) String method,
+                             @RequestParam(required = false) String imageUrlPath){
 
 
         Optional<Recipe> recipe = recipeService.findRecipeById(id);
 
         if(recipe.isPresent()){
             System.out.println("Item updated");
-            recipeService.updateRecipe(id, heading, rating, description, preparationTimeMinutes, cookingTimeMinutes, serves, difficulty, ingredients, method);
+            recipeService.updateRecipe(id, heading, rating, description, preparationTimeMinutes, cookingTimeMinutes, serves, difficulty, ingredients, method, imageUrlPath);
         } else {
             System.out.println("Item does not exist");
         }

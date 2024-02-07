@@ -78,6 +78,8 @@ const UpdateRecipe = ({updateFields, errors, persistentData, setPersistentData }
         }
     }
 
+    console.log(updateFields)
+
     return (
         <>
             {/*

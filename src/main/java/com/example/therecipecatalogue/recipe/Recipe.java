@@ -24,12 +24,12 @@ public class Recipe {
     @Column(length = 500)
     private String method;
     @Column(length = 500)
-    private String urlImage;
+    private String imageUrlPath;
 
     public Recipe() {
     }
 
-    public Recipe(String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method, String urlImage) {
+    public Recipe(String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method, String imageUrlPath) {
         this.heading = heading;
         this.rating = rating;
         this.description = description;
@@ -39,10 +39,10 @@ public class Recipe {
         this.difficulty = difficulty;
         this.ingredients = ingredients;
         this.method = method;
-        this.urlImage = urlImage;
+        this.imageUrlPath = imageUrlPath;
     }
 
-    public Recipe(Long id, String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method, String urlImage) {
+    public Recipe(Long id, String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method, String imageUrlPath) {
         this.id = id;
         this.heading = heading;
         this.rating = rating;
@@ -53,7 +53,7 @@ public class Recipe {
         this.difficulty = difficulty;
         this.ingredients = ingredients;
         this.method = method;
-        this.urlImage = urlImage;
+        this.imageUrlPath = imageUrlPath;
     }
 
     public Long getId() {
@@ -136,12 +136,12 @@ public class Recipe {
         this.method = method;
     }
 
-    public String getUrlImaged() {
-        return urlImage;
+    public String getImageUrlPath() {
+        return imageUrlPath;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setImageUrlPath(String imageUrlPath) {
+        this.imageUrlPath = imageUrlPath;
     }
 
     @Override
@@ -157,7 +157,7 @@ public class Recipe {
                 ", difficulty=" + difficulty +
                 ", ingredients='" + ingredients + '\'' +
                 ", method='" + method + '\'' +
-                ", urlImage='" + urlImage + '\'' +
+                ", imageUrlPath='" + imageUrlPath + '\'' +
                 '}';
     }
 }

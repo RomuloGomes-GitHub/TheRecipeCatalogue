@@ -251,10 +251,10 @@ const AddNewRecipeModal = () => {
                             <Form.Control.Feedback type="invalid">{errors.method}</Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group controlId="formUrlImaged">
-                            <Form.Label>Method</Form.Label>
-                            <Form.Control type="text" name="urlImaged" placeholder="Enter url from where your image is located" isInvalid={!!errors.urlImaged} onChange={changeHandler} />
-                            <Form.Control.Feedback type="invalid">{errors.urlImaged}</Form.Control.Feedback>
+                        <Form.Group controlId="formImageUrlPath">
+                            <Form.Label>URL Image</Form.Label>
+                            <Form.Control type="text" name="imageUrlPath" placeholder="Enter url from where your image is located" isInvalid={!!errors.imageUrlPath} onChange={changeHandler} />
+                            <Form.Control.Feedback type="invalid">{errors.imageUrlPath}</Form.Control.Feedback>
                         </Form.Group>
                     </Form>
 

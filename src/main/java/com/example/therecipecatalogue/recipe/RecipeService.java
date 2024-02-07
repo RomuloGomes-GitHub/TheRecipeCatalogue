@@ -42,7 +42,7 @@ public class RecipeService {
     }
 
     @Transactional
-    public void updateRecipe(Long id, String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method) {
+    public void updateRecipe(Long id, String heading, int rating, String description, int preparationTimeMinutes, int cookingTimeMinutes, int serves, int difficulty, String ingredients, String method, String imageUrlPath) {
         Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new IllegalStateException("Recipe with Id " + id + " does not exist"));
 
         if(heading != null && heading.length() > 0){
@@ -79,6 +79,10 @@ public class RecipeService {
 
         if(method != null && method.length() > 0){
             recipe.setMethod(method);
+        }
+
+        if(imageUrlPath != null && imageUrlPath.length() > 0){
+            recipe.setImageUrlPath(imageUrlPath);
         }
     }
 }

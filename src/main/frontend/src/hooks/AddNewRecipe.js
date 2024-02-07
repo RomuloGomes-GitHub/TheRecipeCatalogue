@@ -66,7 +66,7 @@ const AddNewRecipe = ({recipe, errors, persistentData, setPersistentData}) =>  {
             setFormChecked(false);
         }
 
-        if(!Object.keys(errors).includes("urlImaged")){
+        if(!Object.keys(errors).includes("imageUrlPath")){
             submitForm = false;
             setFormChecked(false);
         }

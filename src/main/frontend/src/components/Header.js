@@ -24,7 +24,7 @@ const Header = () => {
 
             <Navbar bg="dark" data-bs-theme="dark" className="bg-body-tertiary">
                 <Container fluid>
-                    <Navbar.Brand as={Link} to={"/"}>The Recipe Catalogue</Navbar.Brand>
+                    <Navbar.Brand as={Link} to={"/"} style={{ zIndex: 2000 }}>The Recipe Catalogue</Navbar.Brand>
                     <Navbar.Collapse className="justify-content-end" style={{ zIndex: 2000 }}>
                         <AuthNavigation />
                     </Navbar.Collapse>

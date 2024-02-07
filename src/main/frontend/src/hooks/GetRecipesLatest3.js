@@ -43,7 +43,7 @@ const GetRecipesLatest3 = ({ persistentData, setPersistentData }) => {
             <Col key={index} as={Link} to={"./recipes/recipe/" + recipe.id} style={{ textDecoration: 'none' }}>
                 <div className="d-flex h-100 flex-column">
                     <div className="card flex-grow-1">
-                        <Card.Img variant="top" src={recipe.urlImaged} height="200" />
+                        <Card.Img variant="top" src={recipe.imageUrlPath} height="200" />
                         <Card.Body>
                             <Card.Title style={{ textAlign: 'center' }}>{recipe.heading}</Card.Title>
                             <Card.Text style={{ textAlign: 'justify' }}>{recipe.description}</Card.Text>

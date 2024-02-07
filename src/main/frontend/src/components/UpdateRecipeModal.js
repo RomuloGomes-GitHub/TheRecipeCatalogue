@@ -288,10 +288,10 @@ const UpdateRecipeModal = ({recipeChanges}) => {
                             <Form.Control.Feedback type="invalid">{errors.method}</Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group controlId="formUrlImaged">
-                            <Form.Label>Method</Form.Label>
-                            <Form.Control type="text" name="urlImaged" defaultValue={recipeFields.urlImaged || ''} isInvalid={!!errors.urlImaged} onChange={changeHandler} />
-                            <Form.Control.Feedback type="invalid">{errors.urlImaged}</Form.Control.Feedback>
+                        <Form.Group controlId="formImageUrlPath">
+                            <Form.Label>URL Image</Form.Label>
+                            <Form.Control type="text" name="imageUrlPath" defaultValue={recipeFields.imageUrlPath || ''} isInvalid={!!errors.imageUrlPath} onChange={changeHandler} />
+                            <Form.Control.Feedback type="invalid">{errors.imageUrlPath}</Form.Control.Feedback>
                         </Form.Group>
                     </Form>
 

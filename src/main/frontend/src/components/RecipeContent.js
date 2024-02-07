@@ -27,7 +27,7 @@ const RecipeContent = (recipeReceived) => {
                     <Col md={12}>
                         <div className="d-flex flex-column">
                             <div className="card mb-3 flex-grow-1" style={{ textAlign: 'justify' }}>
-                                <img className="card-img-top" src={recipe.urlImaged} alt="Card image cap" height="500"/>
+                                <img className="card-img-top" src={recipe.imageUrlPath} alt="Card image cap" height="500"/>
 
                                 <Row className="mx-4 mt-2">
                                     <Col md={4}>
