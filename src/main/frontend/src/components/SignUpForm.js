@@ -27,7 +27,8 @@ const SignUpForm = ({ persistentData, setPersistentData }) => {
 
         event.preventDefault()
         //const url = "http://localhost:8080/api/v1/auth/register";
-        const url = "http://monorail.proxy.rlwy.net:55202/api/v1/auth/register";
+        const urlHost = window.location.origin;
+        const url = urlHost + "/api/v1/auth/register";
         const parameter = user;
 
         console.log("urlurlurlurl" + url)

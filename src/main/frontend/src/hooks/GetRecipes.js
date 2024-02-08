@@ -31,8 +31,7 @@ const GetRecipes = ({ persistentData, setPersistentData }) => {
         };
 
         const urlHost = window.location.origin;
-        console.log(urlHost)
-        const url = "http://localhost:8080/api/v1/recipes"
+        const url = urlHost + "/api/v1/recipes"
 
         axios.get(url, {headers: headers}).then(response => {
             setRecipes(response.data);

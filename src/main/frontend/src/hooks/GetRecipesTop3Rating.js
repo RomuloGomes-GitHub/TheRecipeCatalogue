@@ -25,7 +25,8 @@ const GetRecipesTop3Rating = ({ persistentData, setPersistentData }) => {
           'Authorization': token
         };
 
-        const url = "http://localhost:8080/api/v1/recipes/recipes_top_3_rating"
+        const urlHost = window.location.origin;
+        const url = urlHost + "/api/v1/recipes/recipes_top_3_rating"
 
         axios.get(url, {headers: headers}).then(response => {
             setRecipes(response.data);

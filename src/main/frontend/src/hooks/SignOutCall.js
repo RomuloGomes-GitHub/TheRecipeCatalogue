@@ -32,7 +32,8 @@ const SignOutCall = ({ persistentData, setPersistentData }) => {
           'Authorization': token
         };
 
-        const url = "http://localhost:8080/logout";
+        const urlHost = window.location.origin;
+        const url = urlHost + "/logout";
 
         axios.post(url, {}, {headers: headers}).then(response => {
             savePersistentData("");

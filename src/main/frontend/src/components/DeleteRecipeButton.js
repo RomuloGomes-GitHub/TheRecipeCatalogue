@@ -14,8 +14,8 @@ const DeleteRecipeButton = ( {recipeId, persistentData, setPersistentData} ) => 
           'Authorization': token
         };
 
-        //event.preventDefault();
-        const url = "http://localhost:8080/api/v1/recipe"
+        const urlHost = window.location.origin;
+        const url = urlHost + "/api/v1/recipe"
         const parameter = "/" + recipeId.id
 
         axios.delete(url + parameter, {}, {headers: headers}).then(response => {

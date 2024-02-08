@@ -26,7 +26,9 @@ const SigInForm = ({ persistentData, setPersistentData }) => {
     const submitSignIn = (event) => {
 
         event.preventDefault()
-        const url = "http://localhost:8080/api/v1/auth/authenticate";
+
+        const urlHost = window.location.origin;
+        const url = urlHost + "/api/v1/auth/authenticate";
         const parameter = user;
 
         axios.post(url, parameter).then(response => {
