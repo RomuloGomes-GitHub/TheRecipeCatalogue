@@ -51,7 +51,10 @@ public class SecurityConfiguration {
             .csrf().disable()
             //.cors().and()
             .authorizeRequests()
+                //.antMatchers("*").permitAll()
                 .antMatchers("/").permitAll()
+                //.antMatchers("/public/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/about").permitAll()
                 .antMatchers("/recipes").permitAll()
                 .antMatchers("/contact").permitAll()
@@ -63,6 +66,7 @@ public class SecurityConfiguration {
                 .antMatchers("/api/v1/recipes/recipes_top_3_rating").permitAll()
                 .antMatchers("/api/v1/recipes/recipes_latest_3").permitAll()
                 //.antMatchers("/api/v1/recipes").hasAuthority("ADMIN")
+                //.anyRequest().permitAll()
                 .anyRequest().authenticated()
                 .and()
             .exceptionHandling()
@@ -72,7 +76,7 @@ public class SecurityConfiguration {
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
             .formLogin()
-                //.loginPage("/api/v1/auth") // Specify the custom login page URL
+                //.loginPage("/logina") // Specify the custom login page URL
                 .permitAll()
                 .and()
             .logout()

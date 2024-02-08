@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
 public class TheRecipeCatalogueApplication {
@@ -18,6 +19,18 @@ public class TheRecipeCatalogueApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TheRecipeCatalogueApplication.class, args);
 	}
+/*
+	@GetMapping(value = {"/", "/{path:[^\\.]*}"})
+	public String index() {
+		return "index";
+	}
+	*/
+
+
+	//@GetMapping(value = "/**/{path:[^\\.]*}")
+	/*public String forward() {
+		return "forward:/";
+	}*/
 
 	/*
 	@Bean
