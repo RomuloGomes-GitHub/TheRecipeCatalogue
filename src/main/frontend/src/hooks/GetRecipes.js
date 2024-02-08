@@ -30,6 +30,8 @@ const GetRecipes = ({ persistentData, setPersistentData }) => {
           'Authorization': token
         };
 
+        const urlHost = window.location.origin;
+        console.log(urlHost)
         const url = "http://localhost:8080/api/v1/recipes"
 
         axios.get(url, {headers: headers}).then(response => {
