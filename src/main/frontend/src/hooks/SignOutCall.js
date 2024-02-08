@@ -42,6 +42,7 @@ const SignOutCall = ({ persistentData, setPersistentData }) => {
         })
 
         navigate('/');
+        window.location.reload(true);
 
     }, []);
 
