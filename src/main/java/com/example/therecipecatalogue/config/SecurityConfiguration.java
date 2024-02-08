@@ -56,7 +56,7 @@ public class SecurityConfiguration {
                 //.antMatchers("/public/**").permitAll()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/about").permitAll()
-                .antMatchers("/recipes").permitAll()
+                //.antMatchers("/recipes").permitAll()
                 .antMatchers("/contact").permitAll()
                 .antMatchers("/api/v1/auth/register").permitAll()
                 .antMatchers("/api/v1/auth/authenticate").permitAll()

@@ -31,8 +31,6 @@ const SignUpForm = ({ persistentData, setPersistentData }) => {
         const url = urlHost + "/api/v1/auth/register";
         const parameter = user;
 
-        console.log("urlurlurlurl" + url)
-
         axios.post(url, parameter).then(response => {
 
             savePersistentData(response.data.access_token);
