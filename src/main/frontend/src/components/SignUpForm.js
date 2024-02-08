@@ -26,8 +26,11 @@ const SignUpForm = ({ persistentData, setPersistentData }) => {
     const submitSignUp = (event) => {
 
         event.preventDefault()
-        const url = "http://localhost:8080/api/v1/auth/register";
+        //const url = "http://localhost:8080/api/v1/auth/register";
+        const url = "http://monorail.proxy.rlwy.net:55202/api/v1/auth/register";
         const parameter = user;
+
+        console.log("urlurlurlurl" + url)
 
         axios.post(url, parameter).then(response => {
 
