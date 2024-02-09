@@ -21,6 +21,7 @@ const GetRecipes = ({ persistentData, setPersistentData }) => {
     if(document.getElementById('userRole') != null){
         var userRoleCheck = document.getElementById('userRole').textContent;
     }
+        console.log("gggggggggggggggggggg");
 
     const fetchRecipes = () => {
 
@@ -30,13 +31,25 @@ const GetRecipes = ({ persistentData, setPersistentData }) => {
           'Authorization': token
         };
 
-        const urlHost = window.location.origin;
+        //const urlHost = window.location.origin;
+        const urlHost = "http://localhost:8080";
         const url = urlHost + "/api/v1/recipes"
 
+        console.log("ttttttttttttttttttttttttttt" + url);
+
         axios.get(url, {headers: headers}).then(response => {
+            console.log("dssdfsdfsdfsdf1");
+            const serverHeader = response.headers;
+            console.log('Server Header:', serverHeader);
+            console.log("dssdfsdfsdfsdf2");
+
             setRecipes(response.data);
         }).catch(response => {
             console.log(response + " Error: " + response.data);
+            console.log("dssdfsdfsdfsdf3");
+            const serverHeader = response.headers.get('Server');
+            console.log('Server Header:', serverHeader);
+            console.log("dssdfsdfsdfsdf4");
         })
     }
 
