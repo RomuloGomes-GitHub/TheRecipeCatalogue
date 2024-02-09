@@ -31,25 +31,17 @@ const GetRecipes = ({ persistentData, setPersistentData }) => {
           'Authorization': token
         };
 
-        //const urlHost = window.location.origin;
-        const urlHost = "http://localhost:8080";
+        const urlHost = window.location.origin;
+        //const urlHost = "http://localhost:8080";
         const url = urlHost + "/api/v1/recipes"
 
-        console.log("ttttttttttttttttttttttttttt" + url);
-
         axios.get(url, {headers: headers}).then(response => {
-            console.log("dssdfsdfsdfsdf1");
             const serverHeader = response.headers;
-            console.log('Server Header:', serverHeader);
-            console.log("dssdfsdfsdfsdf2");
 
             setRecipes(response.data);
         }).catch(response => {
             console.log(response + " Error: " + response.data);
-            console.log("dssdfsdfsdfsdf3");
             const serverHeader = response.headers.get('Server');
-            console.log('Server Header:', serverHeader);
-            console.log("dssdfsdfsdfsdf4");
         })
     }
 
